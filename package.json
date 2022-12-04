@@ -1,0 +1,30 @@
+{
+  "name": "my-excel",
+  "version": "1.0.0",
+  "description": "Pure JS my excell App",
+  "main": "webpack.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack",
+    "build": "webpack --mode production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MadMaX-74/my-excel.git"
+  },
+  "keywords": [
+    "JS",
+    "JavaScript"
+  ],
+  "author": "MadMaxWebDev",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MadMaX-74/my-excel/issues"
+  },
+  "homepage": "https://github.com/MadMaX-74/my-excel#readme",
+  "private": true,
+  "devDependencies": {
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.0"
+  }
+}

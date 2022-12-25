@@ -6,14 +6,20 @@ function toChar(_, idx) {
     return String.fromCharCode(CODES.A + idx)
 }
 function createCell() {
-    return `<div class="cell"></div>`
+    return `<div class="cell" contenteditable></div>`
 }
 function createColumn(column) {
-    return `<div class="column">${column}</div>`
+    return `<div class="column">${column} 
+                <div class="col-resize"></div>
+            </div>`
 }
 function createRow(index, content) {
+    const resizer = index ? '<div className="row-resize"></div>' : ''
     return `<div class="row">
-        <div class="row-info">${index ? index : ''}</div>
+        <div class="row-info">
+            ${index ? index : ''}
+            ${resizer}
+        </div>
         <div class="row-data">${content}</div>
         </div>`
 }

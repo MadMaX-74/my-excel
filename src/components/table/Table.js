@@ -23,12 +23,16 @@ export class Table extends ExcelComponent {
                 if (type === 'col') {
                     const delta = e.pageX - cords.right
                     const value = cords.width + delta
-                    $parent.$el.style.width = value + 'px'
+                    $parent.css({
+                        width: value + 'px'
+                    })
                     cells .forEach(el => el.style.width = value + 'px')
                 } else {
                     const delta = e.pageY - cords.bottom
                     const value = cords.height + delta
-                    $parent.$el.style.height = value + 'px'
+                    $parent.css({
+                        height: value + 'px'
+                    })
                 }
             }
             document.onmouseup = () => {

@@ -6,6 +6,7 @@ import {shouldResize,
     nextSelector} from '@/components/table/table.functions';
 import {TableSelection} from '@/components/table/TableSelection';
 import {$} from '@core/dom';
+import * as actions from '@/store/actions'
 
 export class Table extends ExcelComponent {
     static className = 'excel__table'
@@ -33,17 +34,22 @@ export class Table extends ExcelComponent {
         this.$on('formula:done', () => {
             this.selection.current.focus()
         })
-        this.$subscribe(state => {
-            console.log('TableState:', state)
-        })
     }
     selectCell($cell) {
         this.selection.select($cell)
         this.$emit('table:select', $cell)
     }
+    async resizeTable(event) {
+        try {
+            const data = await resizeHandler(this.$root, event)
+            this.$dispatch(actions.tableResize(data))
+        } catch (e) {
+            console.warn('Resize error: ', e.message)
+        }
+    }
     onMousedown(event) {
         if (shouldResize(event)) {
-            resizeHandler(this.$root, event)
+            this.resizeTable(event)
         } else if (event.target.dataset.type === 'cell') {
             const $target = $(event.target)
             if (event.shiftKey) {

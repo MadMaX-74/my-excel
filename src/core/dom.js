@@ -11,6 +11,12 @@ class Dom {
         }
         return this.$el.outerHTML.trim()
     }
+    getStyles(styles = []) {
+        return styles.reduce((res, s) => {
+            res[s] = this.$el.style[s]
+            return res
+        }, {})
+    }
     text(text) {
         if (typeof text === 'string') {
             this.$el.textContent = text

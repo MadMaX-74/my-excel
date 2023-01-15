@@ -1,7 +1,13 @@
-import {CHANGE_TEXT, CHANGE_STYLES, TABLE_RESIZE} from '@/store/types';
+import {
+    CHANGE_TEXT,
+    CHANGE_STYLES,
+    TABLE_RESIZE,
+    APPLY_STYLE
+} from '@/store/types';
 
 export function rootReducer(state, action) {
     let field
+    let val
     switch (action.type) {
         case TABLE_RESIZE:
             field = action.data.type === 'col' ? 'colState' : 'rowState'
@@ -13,6 +19,17 @@ export function rootReducer(state, action) {
                 dataState: value(state, field, action)}
         case CHANGE_STYLES:
             return {...state, currentStyles: action.data}
+        case APPLY_STYLE:
+            field = 'styleState'
+            val = state[field] || {}
+            action.data.ids.forEach(id => {
+                val[id] = {...val[id], ...action.data.value}
+            })
+            return {
+                ...state,
+                [field]: val,
+                currentStyles: {...state.currentStyles + action.data.value}
+            }
         default: return state
     }
 }

@@ -8,6 +8,7 @@ import {TableSelection} from '@/components/table/TableSelection';
 import {$} from '@core/dom';
 import * as actions from '@/store/actions'
 import {defaultStyles} from '@/constants';
+import {parse} from '@core/parse';
 
 export class Table extends ExcelComponent {
     static className = 'excel__table'
@@ -35,9 +36,11 @@ export class Table extends ExcelComponent {
         super.init()
         const $cell = this.$root.find('[data-id="0:0"')
         this.selectCell($cell)
-        this.$on('formula:input', text => {
-            this.selection.current.text(text)
-            this.updateTextInStore(text)
+        this.$on('formula:input', value => {
+            this.selection.current
+                .attr('data-value', value)
+                .text(parse(value))
+            this.updateTextInStore(value)
         })
         this.$on('formula:done', () => {
             this.selection.current.focus()

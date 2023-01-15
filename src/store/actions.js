@@ -1,7 +1,10 @@
-import {CHANGE_TEXT,
+import {
+    CHANGE_TEXT,
     CHANGE_STYLES,
     TABLE_RESIZE,
-    APPLY_STYLE} from '@/store/types';
+    APPLY_STYLE,
+    CHANGE_TITLE
+} from '@/store/types';
 
 export function tableResize(data) {
     return {
@@ -24,6 +27,12 @@ export function changeStyles(data) {
 export function applyChanges(data) {
     return {
         type: APPLY_STYLE,
+        data
+    }
+}
+export function changeTitle(data) {
+    return {
+        type: CHANGE_TITLE,
         data
     }
 }

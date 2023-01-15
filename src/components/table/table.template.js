@@ -1,4 +1,5 @@
 import {toInlineStyles} from '@core/utils';
+import {defaultStyles} from '@/constants';
 
 const CODES = {
     A: 65,
@@ -26,7 +27,10 @@ function createCell(state, row) {
         const id = `${row}:${col}`
         const data = state.dataState[id]
         const width = getWidth(state.colState, col)
-        const styles = toInlineStyles(state.styleState[id])
+        const styles = toInlineStyles({
+            ...defaultStyles,
+            ...state.styleState[id]
+        })
         return `<div 
         class="cell" 
         contenteditable 

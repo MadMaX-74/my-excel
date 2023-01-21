@@ -28,7 +28,6 @@ export class Formula extends ExcelComponent {
 
     onInput(event) {
         const text = $(event.target).text()
-        console.log(text)
         this.$emit('formula:input', text)
     }
     onKeydown(event) {

@@ -1,6 +1,7 @@
 import {$} from '@core/dom';
 import {Emitter} from '@core/Emitter';
 import {StoreSubscriber} from '@core/StoreSubscriber';
+import {tableDate} from '@/store/actions';
 
 export class Excel {
     constructor(options) {
@@ -25,6 +26,7 @@ export class Excel {
         return $root
     }
     init() {
+        this.store.dispatch(tableDate())
         this.subscriber.subscribeComponents(this.components)
         this.components.forEach(component => component.init())
     }

@@ -1,4 +1,4 @@
-import {Page} from '@core/Page';
+import {Page} from '@core/page/Page';
 import {$} from '@core/dom';
 import {getAllTables} from '@/pages/dashboard.functions';
 
